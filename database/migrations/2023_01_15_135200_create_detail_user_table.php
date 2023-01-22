@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailUsersTable extends Migration
+class CreateDetailUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDetailUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_users', function (Blueprint $table) {
+        Schema::create('detail_user', function (Blueprint $table) {
             $table->id();
-            $table->integer('users_id');
-            $table->integer('type_users_id')->nullable();
+            $table->foreignId('user_id')->nullable()->index('fk_detail_user_to_users');
+            $table->foreignId('type_user_id')->nullable()->index('fk_detail_user_to_type_users');
             $table->string('contact')->nullable();
             $table->longText('address')->nullable();
             $table->longText('photo')->nullable();
@@ -34,6 +34,6 @@ class CreateDetailUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_users');
+        Schema::dropIfExists('detail_user');
     }
 }
