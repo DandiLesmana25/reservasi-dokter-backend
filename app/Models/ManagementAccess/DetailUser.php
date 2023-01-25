@@ -37,10 +37,32 @@ class DetailUser extends Model
     ];
 
     // one to many
+    
+     //one to many
+     //nama functionnya tabel yang dituju
+     public function type_user()
+     {
+        //3 parameter( path model, field foreign key, field primary key from tabel hasmany/hasone )
+        return this->belongsTo('App\Models\MasterData\TypeUser', 'type_user_id', 'id');   //(pathdarimodel yang dituju', 'namafield di detail user yang dituju)
+        
+     }
 
-    public function type_user()
-    {
-        return $this->belongsTo(App);
-
-    }
+     public function user()
+     {
+        //3 parameter( path model, field foreign key, field primary key from tabel hasmany/hasone )
+        return this->belongsTo('App\Models\User', 'user_id', 'id');   
+        
+     }
 }    
+
+
+
+
+
+//belongsTo= milik
+ 
+// one to many = HasMany -> memiliki banyak di
+// one to one = HasOne   -> memiliki satu di
+
+
+
