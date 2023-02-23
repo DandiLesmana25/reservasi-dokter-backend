@@ -3,10 +3,42 @@
 namespace App\Http\Controllers\Frontsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+
+//use library here
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
+
+
+//dilandingPage tidak ada request
+
+
+// use everything here
+// use Gate;
+use Auth;
+
+// use model here
+use App\Models\User;
+use App\Models\Operational\Doctor;
+use App\Models\MasterData\Specialist;
+
+
+//disini third party jika ada
+
+
+
 
 class LandingController extends Controller
 {
+    //landing controller tidak perlu auth/login
+    // public function __construct() 
+    // {
+    //     $this->middleware('auth');
+        
+    // }
+    //construct = sebuah function yang akan jalan pertama kali disaat process dijalankam
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +46,10 @@ class LandingController extends Controller
      */
     public function index()
     {
-        //
+        $specialist = Specialist::orderBy('name', 'desc')->limit(5)->get();
+        $doctor = Doctor::orderBy('created_at', 'desc')->limit(4)->get();
+
+        return view('pages.frontsite.landing-page.index', compact('doctor', 'specialist'));
     }
 
     /**
@@ -24,7 +59,7 @@ class LandingController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -35,7 +70,7 @@ class LandingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -46,7 +81,7 @@ class LandingController extends Controller
      */
     public function show($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -57,7 +92,7 @@ class LandingController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -69,7 +104,7 @@ class LandingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -80,6 +115,8 @@ class LandingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort(404);
     }
+
+      // custom function here
 }
